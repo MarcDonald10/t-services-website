@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+};
+/* styles.css */
+.bg-noise {
+  background-image: url('./assets//images/patern/patern1.jpg'); /* Remplacez par une texture de bruit léger */
+  background-size: 200px;
+  background-repeat: repeat;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1, p {
+    font-family: 'Inter', sans-serif;
+  }
+}
