@@ -62,7 +62,7 @@ const FeaturesSection = ({ features }) => {
             <div className="relative bg-white p-3 rounded-xl shadow-lg">
               <LazyLoadImage
                 src={image04}
-                alt="Personne utilisant l’application BTP"
+                alt="Personne utilisant l’application du génie civil"
                 className="w-full h-56 md:h-72 lg:h-[400px] object-cover rounded-lg"
                 effect="blur"
                 placeholderSrc="https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=100"
@@ -92,7 +92,7 @@ const FeaturesSection = ({ features }) => {
               variants={cardVariants}
               className="text-lg md:text-xl text-gray-600 mb-8 max-w-md mx-auto lg:mx-0 text-center lg:text-left"
             >
-              Une solution simple et fiable pour vos projets BTP, conçue pour l’Afrique francophone.
+              Une solution simple et fiable pour vos projets du génie civil, conçue pour l’Afrique francophone.
             </motion.p>
             <div className="relative max-w-2xl mx-auto lg:mx-0 space-y-6">
               {/* Connecting Line */}

@@ -5,15 +5,17 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 const AppStoreSection = () => (
   <section className="py-12 bg-white">
     <div className="container mx-auto px-4 text-center">
-      <motion.h3
+      <motion.a
+       href="https://techservice-bxty.vercel.app/"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
         className="text-2xl font-semibold text-gray-900 mb-6"
       >
-        Téléchargez l’app dès maintenant
-      </motion.h3>
+       
+                Commencer en tant que entreprise
+      </motion.a>
       <div className="flex justify-center gap-4 flex-wrap">
         <motion.a
           href="https://www.apple.com/app-store/"

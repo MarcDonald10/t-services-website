@@ -111,7 +111,7 @@ const About = () => {
               textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)',
             }}
           >
-            Transformez vos projets BTP dès aujourd’hui
+            Transformez vos projets du génie civil dès aujourd’hui
           </motion.h2>
           <motion.p
             variants={itemVariants}
@@ -121,20 +121,20 @@ const About = () => {
               textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)',
             }}
           >
-            Faites partie d’une communauté innovante qui simplifie la connexion entre clients et techniciens du BTP.
+            Faites partie d’une communauté innovante qui simplifie la connexion entre clients et techniciens du génie civil.
           </motion.p>
           <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
             <motion.a
-              href="/download"
+              href="https://techservice-bxty.vercel.app/"
               className="bg-gradient-to-r from-client to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-md focus:ring-4 focus:ring-client focus:ring-offset-2"
               whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)' }}
               whileTap={{ scale: 0.95 }}
               aria-label="Télécharger l'application"
             >
-              Téléchargez l’app
+              Commencer en tant que entreprise
             </motion.a>
             <motion.a
               href="/technicians"

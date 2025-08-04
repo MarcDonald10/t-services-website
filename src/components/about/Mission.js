@@ -75,7 +75,7 @@ const Mission = () => {
               textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)',
             }}
           >
-            Révolutionner le BTP avec simplicité
+            Révolutionner le domaine du génie civil avec simplicité
           </motion.h2>
 
           {/* Description */}
@@ -87,7 +87,7 @@ const Mission = () => {
               textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)',
             }}
           >
-            Chez TechServices, nous simplifions chaque étape des projets BTP en connectant clients et techniciens avec des outils innovants, fiables, et intuitifs.
+            Chez TechServices, nous simplifions chaque étape des projets du génie civil en connectant clients et techniciens avec des outils innovants, fiables, et intuitifs.
           </motion.p>
 
           {/* Bouton CTA */}

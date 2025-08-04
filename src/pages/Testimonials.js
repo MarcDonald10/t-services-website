@@ -145,7 +145,7 @@ const Testimonials = () => {
             </motion.div>
 
             {/* Boutons CTA */}
-            <motion.div
+            {/* <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row justify-center gap-6 mt-16"
             >
@@ -167,7 +167,7 @@ const Testimonials = () => {
               >
                 Rejoignez TechServices
               </motion.a>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </section>

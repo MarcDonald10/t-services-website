@@ -7,6 +7,7 @@ import image01 from '../../assets/images/home/img01.jpg';
 
 const FAQSection = ({ faqs }) => {
   // State to track which FAQ is open
+  
   const [openIndex, setOpenIndex] = useState(null);
 
   // Animation variants for staggered effects
@@ -32,16 +33,16 @@ const FAQSection = ({ faqs }) => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section className="py-16 md:py-24 bg-gradient-to-br from-white-600 to-teal-500 text-white ">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Left: Image */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             viewport={{ once: true }}
-            className="relative h-64 md:h-96 lg:h-full"
+            className="relative h-100 md:h-100 lg:h-full"
           >
             <LazyLoadImage
               src={image01}
@@ -51,6 +52,7 @@ const FAQSection = ({ faqs }) => {
               placeholderSrc="https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=100"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+            
           </motion.div>
 
           {/* Right: FAQ Content */}

@@ -14,12 +14,12 @@ import TrustedBySection from '../components/home/TrustedBySection';
 const Home = () => {
   const features = [
     {
-      title: 'Artisans à portée de main',
+      title: 'Techniciens à portée de main',
       description: 'Trouvez des professionnels qualifiés près de chez vous, disponibles 24/7.',
       icon: <UserIcon className="w-8 h-8 text-client" />,
     },
     {
-      title: 'Tous vos projets BTP',
+      title: 'Tous vos projets de génie civil',
       description: 'Plomberie, électricité, maçonnerie, peinture : une app pour tout.',
       icon: <CheckCircleIcon className="w-8 h-8 text-client" />,
     },
@@ -29,7 +29,7 @@ const Home = () => {
       icon: <LockClosedIcon className="w-8 h-8 text-client" />,
     },
     {
-      title: 'Outils pour artisans',
+      title: 'Outils pour techniciens',
       description: 'Visibilité, gestion des projets, statistiques : boostez votre carrière.',
       icon: <CalendarIcon className="w-8 h-8 text-client" />,
     },
@@ -38,13 +38,13 @@ const Home = () => {
   const steps = [
     {
       title: 'Recherchez',
-      description: 'Indiquez vos besoins et trouvez un artisan qualifié en quelques secondes.',
+      description: 'Indiquez vos besoins et trouvez un technicien qualifié en quelques secondes.',
       icon: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
       color: 'client',
     },
     {
       title: 'Réservez',
-      description: 'Choisissez votre artisan et planifiez l’intervention en un clic.',
+      description: 'Choisissez votre technicien et planifiez l’intervention en un clic.',
       icon: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
       color: 'client',
     },
@@ -74,35 +74,35 @@ const Home = () => {
     {
       name: 'Aïssatou ty.',
       role: 'Entreprise, Bamako',
-      text: 'Une plateforme intuitive pour gérer nos projets BTP efficacement.',
+      text: 'Une plateforme intuitive pour gérer nos projets du génie civil efficacement.',
       avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
       rating: 6,
     },
     {
       name: 'Aïssatou op.',
       role: 'Entreprise, Bamako',
-      text: 'Une plateforme intuitive pour gérer nos projets BTP efficacement.',
+      text: 'Une plateforme intuitive pour gérer nos projets du génie civil efficacement.',
       avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
       rating: 7,
     },
     {
       name: 'ytui B.',
       role: 'Entreprise, Bamako',
-      text: 'Une plateforme intuitive pour gérer nos projets BTP efficacement.',
+      text: 'Une plateforme intuitive pour gérer nos projets du génie civil efficacement.',
       avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
       rating: 8,
     },
     {
       name: 'Aïssatou B.',
       role: 'Entreprise, Bamako',
-      text: 'Une plateforme intuitive pour gérer nos projets BTP efficacement.',
+      text: 'Une plateforme intuitive pour gérer nos projets du génie civil efficacement.',
       avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
       rating: 4,
     },
     {
       name: 'sdtyus B.',
       role: 'Entreprise, Bamako',
-      text: 'Une plateforme intuitive pour gérer nos projets BTP efficacement.',
+      text: 'Une plateforme intuitive pour gérer nos projets du génie civil efficacement.',
       avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
       rating: 9,
     },
@@ -110,20 +110,20 @@ const Home = () => {
 
   const faqs = [
     {
-      question: 'Comment trouver un artisan qualifié ?',
-      answer: 'Entrez vos besoins dans l’app, sélectionnez votre ville, et choisissez parmi les artisans vérifiés près de chez vous.',
+      question: 'Comment trouver un technicien qualifié ?',
+      answer: 'Entrez vos besoins dans l’app, sélectionnez votre ville, et choisissez parmi les techniciens vérifiés près de chez vous.',
     },
     {
       question: 'Les paiements sont-ils sécurisés ?',
       answer: 'Oui, notre système de paiement crypté garantit la sécurité de vos transactions.',
     },
     {
-      question: 'Comment devenir artisan ?',
+      question: 'Comment devenir technicien ?',
       answer: 'Inscrivez-vous, soumettez vos qualifications, et commencez à recevoir des projets.',
     },
     {
       question: 'Quels types de projets puis-je réaliser ?',
-      answer: 'De la plomberie à la maçonnerie, notre app couvre tous les métiers du BTP.',
+      answer: 'De la plomberie à la maçonnerie, notre app couvre tous les métiers du génie civil.',
     },
   ];
 

@@ -94,17 +94,7 @@ const Navbar = () => {
               )}
             </NavLink>
           ))}
-          {/* Boutons CTA */}
-          <div className="flex items-center space-x-4">
-            
-            <a
-              href="/download"
-              className="bg-client hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition-all duration-300"
-              aria-label="Télécharger l'application"
-            >
-              Téléchargez l’app
-            </a>
-          </div>
+         
         </div>
 
         {/* Bouton menu mobile */}
@@ -146,17 +136,7 @@ const Navbar = () => {
                 </NavLink>
               ))}
               {/* Boutons CTA mobile */}
-              <div className="mt-4 space-y-3">
-                
-                <a
-                  href="/download"
-                  className="block bg-client hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center transition-all duration-300"
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Télécharger l'application"
-                >
-                  Téléchargez l’app
-                </a>
-              </div>
+             
             </div>
           </motion.div>
         )}

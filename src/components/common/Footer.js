@@ -49,15 +49,15 @@ const Footer = () => {
             <a href="/" className="inline-block mb-4">
               <img
                 src={logo}
-                alt="BTP Connect Logo"
+                alt="génie civil Connect Logo"
                 className="h-12 transition-transform duration-300 hover:scale-105"
                 onError={(e) => {
-                  e.target.src = 'https://placehold.co/150x50.png?text=Logo+BTP+Connect';
+                  e.target.src = 'https://placehold.co/150x50.png?text=Logo+GC+Connect';
                 }}
               />
             </a>
             <p className="text-gray-400 mb-4">
-              La plateforme qui simplifie vos projets BTP.
+              La plateforme qui simplifie vos projets du génie civil.
             </p>
             <motion.div
               className="inline-flex items-center bg-white/10 rounded-full px-4 py-1"
@@ -72,10 +72,10 @@ const Footer = () => {
             </motion.div>
             <div className="mt-4">
               <p className="text-gray-400">Contactez-nous :</p>
-              <a href="mailto:contact@btpconnect.com" className="text-orange hover:underline">
-                contact@btpconnect.com
+              <a href="mailto:contact@Techservices.com" className="text-orange hover:underline">
+                contact@techservices.com
               </a>
-              <p className="text-gray-400">+237 6.. ... ...</p>
+              <p className="text-gray-400">+237 622 051 723</p>
             </div>
           </motion.div>
 
@@ -129,7 +129,7 @@ const Footer = () => {
           >
             <h3 className="text-xl font-semibold mb-4 text-orange">Restez informé</h3>
             <p className="text-gray-400 mb-4">
-              Inscrivez-vous pour recevoir des astuces BTP et nos dernières mises à jour.
+              Inscrivez-vous pour recevoir des astuces  et nos dernières mises à jour.
             </p>
             <form
               className="flex flex-col sm:flex-row gap-2"
@@ -181,7 +181,7 @@ const Footer = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mt-12 text-center text-gray-400 border-t border-gray-700 pt-6"
         >
-          <p>© 2025 BTP Connect. Tous droits réservés.</p>
+          <p>© 2025 TechServices. Tous droits réservés.</p>
         </motion.div>
       </div>
     </footer>

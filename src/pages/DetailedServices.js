@@ -19,23 +19,23 @@ const servicesData = [
     alt: 'Client utilisant TechServices pour gérer un projet de construction',
     icon: <UserIcon className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
     role: 'Maîtrisez vos chantiers de A à Z',
-    detailedDescription: 'Avec TechServices, trouvez des artisans qualifiés, suivez vos chantiers en temps réel grâce à des mises à jour visuelles, et gérez devis et paiements en toute sécurité via une interface intuitive.',
+    detailedDescription: 'Avec TechServices, trouvez des techniciens qualifiés, suivez vos chantiers en temps réel grâce à des mises à jour visuelles, et gérez devis et paiements en toute sécurité via une interface intuitive.',
     benefits: [
-      { title: 'Demandes Simplifiées', description: 'Envoyez vos besoins à des artisans ou quincailleries en un clic.' },
+      { title: 'Demandes Simplifiées', description: 'Envoyez vos besoins à des techniciens ou quincailleries en un clic.' },
       { title: 'Suivi Visuel', description: 'Recevez des photos et mises à jour en temps réel de vos chantiers.' },
       { title: 'Paiements Sécurisés', description: 'Validez devis et paiements directement dans l’app.' },
     ],
     features: [
       {
         title: 'Envoyer des Demandes',
-        description: 'Soumettez vos besoins à des artisans, entreprises BTP, ou quincailleries en quelques clics.',
+        description: 'Soumettez vos besoins à des techniciens, entreprises du génie civil, ou quincailleries en quelques clics.',
         image: 'https://images.unsplash.com/photo-1611162617213-7d15a376f3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         imageLow: 'https://images.unsplash.com/photo-1611162617213-7d15a376f3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
         alt: 'Capture d’écran de l’interface TechServices pour envoyer une demande de projet',
       },
       {
         title: 'Suivi en Temps Réel',
-        description: 'Suivez l’avancement de vos chantiers via des mises à jour et des photos partagées par les artisans.',
+        description: 'Suivez l’avancement de vos chantiers via des mises à jour et des photos partagées par les techniciens.',
         image: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         imageLow: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
         alt: 'Capture d’écran du suivi en temps réel d’un chantier sur TechServices',
@@ -90,14 +90,14 @@ const servicesData = [
   },
   {
     id: 'entreprises',
-    title: 'Pour les Entreprises BTP',
+    title: 'Pour les Entreprises du génie civil',
     description: 'Coordonnez vos projets avec une efficacité sans précédent.',
     image: 'https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800',
     imageLow: 'https://images.unsplash.com/photo-1504307651254-35680f3567cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-    alt: 'Chantier géré par une entreprise BTP avec TechServices',
+    alt: 'Chantier géré par une entreprise du génie civil avec TechServices',
     icon: <BuildingOfficeIcon className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
     role: 'Orchestrez vos équipes et projets',
-    detailedDescription: 'TechServices permet aux entreprises BTP de recevoir des demandes, de planifier des rendez-vous, et de coordonner techniciens et quincailleries pour des projets livrés dans les délais.',
+    detailedDescription: 'TechServices permet aux entreprises du génie civil de recevoir des demandes, de planifier des rendez-vous, et de coordonner techniciens et quincailleries pour des projets livrés dans les délais.',
     benefits: [
       { title: 'Gestion Centralisée', description: 'Recevez les demandes via l’app web ou mobile.' },
       { title: 'Planification Optimale', description: 'Assignez tâches et rendez-vous facilement.' },
@@ -229,7 +229,7 @@ const ServiceDetails = () => {
       <head>
         <title>{`${service.title} - TechServices`}</title>
         <meta name="description" content={service.detailedDescription} />
-        <meta name="keywords" content={`TechServices, ${service.title}, BTP, construction, chantiers, gestion de projets, artisans, quincailleries`} />
+        <meta name="keywords" content={`TechServices, ${service.title}, du génie civil, construction, chantiers, gestion de projets, techniciens, quincailleries`} />
         <meta property="og:title" content={`${service.title} - TechServices`} />
         <meta property="og:description" content={service.detailedDescription} />
         <meta property="og:image" content={service.image} />
@@ -239,7 +239,7 @@ const ServiceDetails = () => {
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Service',
-            serviceType: `Solution BTP pour ${service.title}`,
+            serviceType: `Solution génie civil pour ${service.title}`,
             provider: {
               '@type': 'Organization',
               name: 'TechServices',
@@ -559,14 +559,14 @@ System: 200px] opacity-10" />
               Téléchargez TechServices dès maintenant et découvrez une nouvelle façon de gérer vos chantiers, collaborer avec vos équipes, et livrer des projets exceptionnels.
             </motion.p>
             <motion.a
-              href="#download"
+              href="https://techservice-bxty.vercel.app/"
               className="inline-block px-12 py-4 bg-blue-900 text-yellow-400 font-semibold rounded-full shadow-lg focus:ring-4 focus:ring-yellow-500/50 focus:outline-none font-inter relative overflow-hidden"
               variants={ctaVariants}
               whileHover="hover"
               whileTap="tap"
               aria-label="Télécharger l’application TechServices"
             >
-              <span className="relative z-10">Téléchargez l’App</span>
+              <span className="relative z-10">Commencer en tant que entreprise </span>
               <motion.div
                 className="absolute inset-0 bg-yellow-400 opacity-0"
                 animate={{ opacity: [0, 0.3, 0] }}

@@ -37,35 +37,28 @@ const CTASection = () => {
               variants={itemVariants}
               className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6"
             >
-              Transformez vos projets BTP dès aujourd’hui
+              Transformez vos projets du génie civil dès aujourd’hui
             </motion.h2>
             <motion.p
               variants={itemVariants}
               className="text-base md:text-lg lg:text-xl mb-8 max-w-md mx-auto lg:mx-0 text-gray-100"
             >
-              Téléchargez l’application ou rejoignez notre réseau d’artisans qualifiés à Abidjan, Dakar, Bamako et au-delà.
+              Téléchargez l’application ou rejoignez notre réseau d’techniciens qualifiés à Abidjan, Dakar, Bamako et au-delà.
             </motion.p>
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
             >
+              
               <motion.a
-                href="/download"
-                className="bg-white text-blue-600 px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold hover:bg-gray-100 transition duration-300 shadow-lg"
-                whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)' }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Téléchargez l'application"
-              >
-                Téléchargez l’app
-              </motion.a>
-              <motion.a
-                href="/technicians"
+                href="https://techservice-bxty.vercel.app/"
                 className="border-2 border-white text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition duration-300 shadow-lg"
                 whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)' }}
                 whileTap={{ scale: 0.95 }}
-                aria-label="Devenir artisan"
+                aria-label="Devenir technicien"
               >
-                Devenez artisan
+                
+                Commencer en tant que entreprise
               </motion.a>
             </motion.div>
           </motion.div>
@@ -76,7 +69,7 @@ const CTASection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             viewport={{ once: true }}
-            className="relative h-64 md:h-96 lg:h-full"
+            className="relative h-100 md:h-100 lg:h-full"
           >
             <LazyLoadImage
               src={image03}

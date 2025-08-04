@@ -85,7 +85,7 @@ const HowItWorksSection = ({ steps }) => {
             <div className="relative bg-white p-4 rounded-xl shadow-2xl transform -rotate-2">
               <LazyLoadImage
                 src="https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Personne utilisant l’application BTP"
+                alt="Personne utilisant l’application du génie civil"
                 className="w-full h-56 md:h-72 lg:h-[450px] object-cover rounded-lg"
                 effect="blur"
                 placeholderSrc="https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=100"
@@ -112,7 +112,7 @@ const HowItWorksSection = ({ steps }) => {
               variants={bubbleVariants}
               className="text-base md:text-lg lg:text-xl text-gray-600 mb-12 max-w-md mx-auto lg:mx-0"
             >
-              Trois étapes simples pour concrétiser vos projets BTP.
+              Trois étapes simples pour concrétiser vos projets du génie civil.
             </motion.p>
             <div className="relative max-w-2xl mx-auto lg:mx-0">
               {steps.map((step, index) => (

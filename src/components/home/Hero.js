@@ -2,16 +2,16 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useEffect, useRef, useState } from 'react';
-import client1 from '../../assets/images/services/client1.jpg';
-import client2 from '../../assets/images/services/client2.jpg';
-import client3 from '../../assets/images/services/technicien2.jpg';
+import client1 from '../../assets/images/home/services-technicien.jpg';
+import client2 from '../../assets/images/home/services-client.jpg';
+import client3 from '../../assets/images/home/presentation.jpg';
 
 // Données du diaporama
 const slideshowData = [
   {
     image: client1,
-    alt: 'Présentation de l’application BTP',
-    caption: 'Découvrez notre application intuitive pour le BTP',
+    alt: 'Présentation de l’application du génie civil',
+    caption: 'Découvrez notre application intuitive pour le génie civil',
   },
   {
     image: client2,
@@ -28,20 +28,20 @@ const slideshowData = [
 // Données de fond et textes
 const backgroundData = [
   {
-    image: 'https://via.placeholder.com/1920x1080/1E40AF/FFFFFF?text=Chantier+BTP',
-    alt: 'Chantier BTP en Afrique',
-    title: 'Révolutionnez vos projets BTP',
-    subtitle: 'Une plateforme intuitive pour connecter clients, artisans et quincailleries.',
+    image: 'https://via.placeholder.com/1920x1080/1E40AF/FFFFFF?text=Chantier',
+    alt: 'Chantier génie civil en Afrique',
+    title: 'Révolutionnez',
+    subtitle: 'Une plateforme intuitive pour connecter clients, techniciens, entreprise de génie civil et quincailleries.',
   },
   {
-    image: 'https://via.placeholder.com/1920x1080/D1D5DB/FFFFFF?text=Artisans+BTP',
-    alt: 'Artisans au travail',
+    image: 'https://via.placeholder.com/1920x1080/D1D5DB/FFFFFF?text=technicien',
+    alt: 'technicien au travail',
     title: 'Simplifiez la gestion de vos chantiers',
-    subtitle: 'Collaborez efficacement avec artisans et fournisseurs en un seul clic.',
+    subtitle: 'Collaborez efficacement avec technicien et fournisseurs en un seul clic.',
   },
   {
-    image: 'https://via.placeholder.com/1920x1080/FBBF24/FFFFFF?text=Quincaillerie+BTP',
-    alt: 'Quincaillerie pour BTP',
+    image: 'https://via.placeholder.com/1920x1080/FBBF24/FFFFFF?text=Quincaillerie',
+    alt: 'Quincaillerie pour le génie civil',
     title: 'Boostez vos projets avec notre app',
     subtitle: 'Accédez à des outils et matériaux de qualité pour vos chantiers.',
   },
@@ -120,7 +120,7 @@ const Hero = () => {
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Fond avec effet de parallaxe */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 ">
         {backgroundData.map((bg, index) => (
           <motion.div
             key={index}
@@ -143,7 +143,7 @@ const Hero = () => {
       </div>
 
       {/* Contenu principal */}
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 lg:px-8 relative z-10 mb-40">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Section texte */}
           <motion.div
@@ -170,7 +170,7 @@ const Hero = () => {
               {fixedText.title}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-client to-yellow-400">
                 {' '}
-                en Afrique
+                vos projets du génie civil
               </span>
             </motion.h1>
 
@@ -186,25 +186,24 @@ const Hero = () => {
             {/* Boutons CTA */}
             <motion.div variants={textVariants} className="flex gap-4 mb-8">
               <motion.a
-                href="#get-started"
                 variants={buttonVariants}
+                href="https://techservice-bxty.vercel.app/"
                 whileHover="hover"
                 whileTap="tap"
                 className="inline-flex items-center px-6 py-3 bg-client text-white rounded-lg shadow-lg hover:bg-blue-600 transition-colors duration-300"
                 aria-label="Commencer maintenant"
               >
-                Commencer
+                Commencer en tant que entreprise
               </motion.a>
-              <motion.a
-                href="#learn-more"
+              {/* <motion.a
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
                 className="inline-flex items-center px-6 py-3 bg-transparent border border-gray-300 text-gray-300 rounded-lg hover:bg-gray-300 hover:text-gray-900 transition-colors duration-300"
                 aria-label="En savoir plus"
               >
-                En savoir plus
-              </motion.a>
+                
+              </motion.a> */}
             </motion.div>
 
             {/* Badges App Store */}
@@ -251,17 +250,17 @@ const Hero = () => {
 
           {/* Diaporama */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             viewport={{ once: true }}
-            className="relative h-64 sm:h-80 md:h-96 lg:h-[550px] flex items-center justify-center"
+            className="relative h-96 sm:h-[500px] md:h-[720px] lg:h-[1080px] w-full flex items-center justify-center"
           >
-            <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl aspect-[16/9]">
               {slideshowData.map((item, index) => (
                 <motion.div
                   key={index}
-                  className="absolute inset-0"
+                  className="absolute inset-0 w-full h-full"
                   variants={slideVariants}
                   initial="hidden"
                   animate={index === activeSlide ? 'visible' : 'hidden'}
@@ -269,20 +268,12 @@ const Hero = () => {
                   <LazyLoadImage
                     src={item.image}
                     alt={item.alt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                     effect="blur"
-                    placeholderSrc={`${item.image}&w=10&q=10`}
+                    placeholderSrc={`${item.image}?w=20&q=20`}
+                    wrapperClassName="w-full h-full"
                   />
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900/70 to-transparent text-white text-center py-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                  >
-                    <p className="text-sm md:text-base font-medium" style={{ fontFamily: "'Roboto', sans-serif" }}>
-                      {item.caption}
-                    </p>
-                  </motion.div>
+                 
                 </motion.div>
               ))}
               {/* Boutons de navigation */}

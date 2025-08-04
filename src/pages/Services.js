@@ -12,29 +12,29 @@ const servicesData = [
   {
     id: 'clients',
     title: 'Pour les Clients',
-    description: 'Trouvez des artisans qualifiés, suivez vos chantiers en temps réel, et gérez vos devis et paiements facilement.',
+    description: 'Trouvez des techniciens qualifiés, suivez vos chantiers en temps réel, et gérez vos devis et paiements facilement.',
     image: 'https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800',
     imageLow: 'https://images.unsplash.com/photo-1611162617213-7d15a376f3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
     alt: 'Client utilisant l’application TechServices sur un smartphone pour gérer un projet de construction',
     icon: <UserIcon className="w-8 h-8 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
     role: 'Initiez et gérez vos projets de construction en toute simplicité.',
-    detailedDescription: 'En tant que client, TechServices vous permet de trouver des artisans qualifiés, de suivre l’avancement de vos chantiers en temps réel, et de gérer vos devis et paiements via une interface intuitive.',
+    detailedDescription: 'En tant que client, TechServices vous permet de trouver des techniciens qualifiés, de suivre l’avancement de vos chantiers en temps réel, et de gérer vos devis et paiements via une interface intuitive.',
     benefits: [
-      'Envoyez des demandes aux artisans, entreprises, ou quincailleries',
+      'Envoyez des demandes aux techniciens, entreprises, ou quincailleries',
       'Suivez l’avancement de vos chantiers en temps réel',
       'Validez les devis et payez en toute sécurité',
     ],
     features: [
       {
         title: 'Envoyer des Demandes',
-        description: 'Soumettez vos besoins à des artisans, entreprises BTP, ou quincailleries en quelques clics.',
+        description: 'Soumettez vos besoins à des techniciens, entreprises du génie civil, ou quincailleries en quelques clics.',
         image: 'https://images.unsplash.com/photo-1611162617213-7d15a376f3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         imageLow: 'https://images.unsplash.com/photo-1611162617213-7d15a376f3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
         alt: 'Capture d’écran de l’interface TechServices pour envoyer une demande de projet',
       },
       {
         title: 'Suivi en Temps Réel',
-        description: 'Suivez l’avancement de vos chantiers via des mises à jour et des photos partagées par les artisans.',
+        description: 'Suivez l’avancement de vos chantiers via des mises à jour et des photos partagées par les techniciens.',
         image: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         imageLow: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
         alt: 'Capture d’écran du suivi en temps réel d’un chantier sur TechServices',
@@ -89,14 +89,14 @@ const servicesData = [
   },
   {
     id: 'entreprises',
-    title: 'Pour les Entreprises BTP',
+    title: 'Pour les Entreprises du génie civil',
     description: 'Gérez les demandes des clients et coordonnez vos projets avec efficacité.',
     image: 'https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800',
     imageLow: 'https://images.unsplash.com/photo-1504307651254-35680f3567cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-    alt: 'Chantier de construction géré par une entreprise BTP utilisant la plateforme TechServices',
+    alt: 'Chantier de construction géré par une entreprise du génie civil utilisant la plateforme TechServices',
     icon: <BuildingOfficeIcon className="w-8 h-8 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
     role: 'Coordonnez vos projets et gérez les demandes des clients efficacement.',
-    detailedDescription: 'TechServices permet aux entreprises BTP de recevoir des demandes, de planifier des rendez-vous, et de coordonner leurs équipes et les quincailleries pour des projets réussis.',
+    detailedDescription: 'TechServices permet aux entreprises du génie civil de recevoir des demandes, de planifier des rendez-vous, et de coordonner leurs équipes et les quincailleries pour des projets réussis.',
     benefits: [
       'Recevez les demandes des clients via l’application web',
       'Planifiez des rendez-vous avec les clients',
@@ -195,19 +195,19 @@ const Services = () => {
     <>
       {/* Métadonnées SEO */}
       <head>
-        <title>Services TechServices - Plateforme BTP Moderne</title>
+        <title>Services TechServices - Plateforme  Moderne</title>
         <meta
           name="description"
-          content="TechServices connecte clients, artisans, entreprises BTP, et quincailleries pour des projets de construction fluides et efficaces."
+          content="TechServices connecte clients, techniciens, entreprises du génie civil, et quincailleries pour des projets de construction fluides et efficaces."
         />
         <meta
           name="keywords"
-          content="TechServices, application BTP, artisans, quincailleries, entreprises BTP, construction, chantiers, gestion de projets"
+          content="TechServices, application du génie civil, techniciens, quincailleries, entreprises du génie civil, construction, chantiers, gestion de projets"
         />
-        <meta property="og:title" content="Services TechServices - Plateforme BTP" />
+        <meta property="og:title" content="Services TechServices - Plateforme du génie civil" />
         <meta
           property="og:description"
-          content="Optimisez vos chantiers avec TechServices : connectez clients, artisans, entreprises, et quincailleries."
+          content="Optimisez vos chantiers avec TechServices : connectez clients, techniciens, entreprises, et quincailleries."
         />
         <meta
           property="og:image"
@@ -217,13 +217,13 @@ const Services = () => {
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Service',
-            serviceType: 'Plateforme BTP',
+            serviceType: 'Plateforme du génie civil',
             provider: {
               '@type': 'Organization',
               name: 'TechServices',
             },
             description:
-              'TechServices connecte clients, artisans, entreprises BTP, et quincailleries pour des projets de construction fluides.',
+              'TechServices connecte clients, techniciens, entreprises du génie civil, et quincailleries pour des projets de construction fluides.',
           })}
         </script>
       </head>
@@ -252,17 +252,17 @@ const Services = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-[clamp(1rem,2vw,1.25rem)] max-w-lg mb-8 font-inter font-medium"
               >
-                Connectez clients, artisans, entreprises BTP, et quincailleries pour des projets fluides, livrés à temps.
+                Connectez clients, technicien, entreprises du génie civil, et quincailleries pour des projets fluides, livrés à temps.
               </motion.p>
               <motion.a
-                href="#download"
+                href="https://techservice-bxty.vercel.app/"
                 className="inline-block px-10 py-4 bg-yellow-400 text-blue-900 font-semibold rounded-full shadow-lg hover:bg-yellow-300 focus:ring-4 focus:ring-yellow-500/50 focus:outline-none font-inter"
                 variants={ctaVariants}
                 whileHover="hover"
                 whileTap="tap"
                 aria-label="Découvrir l’application TechServices"
               >
-                Téléchargements sur Android et iOS
+                Commencer en tant que entreprise
               </motion.a>
             </div>
             <motion.div
@@ -296,7 +296,7 @@ const Services = () => {
             viewport={{ once: true }}
             className="text-[clamp(2rem,4vw,3rem)] font-bold text-center text-blue-900 mb-16 font-montserrat"
           >
-            Solutions pour Tous les Acteurs du BTP
+            Solutions pour Tous les Acteurs du génie civil
           </motion.h2>
           <motion.div
             variants={containerVariants}
@@ -309,11 +309,11 @@ const Services = () => {
               <motion.div
                 key={service.id}
                 variants={itemVariants}
-                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-transparent hover:border-yellow-400"
+                className="group bg-white  shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-transparent hover:border-yellow-400"
                 whileHover={{ y: -8 }}
               >
                 <Link to={`/services/${service.id}`}>
-                  <div className="relative overflow-hidden rounded-t-2xl">
+                  <div className="relative overflow-hidden ">
                     <LazyLoadImage
                       src={service.image}
                       srcSet={`
@@ -401,14 +401,14 @@ const Services = () => {
               Téléchargez TechServices pour connecter vos équipes, optimiser vos chantiers, et livrer vos projets à temps.
             </motion.p>
             <motion.a
-              href="#download"
+              href="https://techservice-bxty.vercel.app/"
               className="inline-block px-10 py-4 bg-yellow-400 text-blue-900 font-semibold rounded-full shadow-lg hover:bg-yellow-300 focus:ring-4 focus:ring-yellow-500/50 focus:outline-none font-inter"
               variants={ctaVariants}
               whileHover="hover"
               whileTap="tap"
               aria-label="Télécharger l’application TechServices"
             >
-              Téléchargez l’App
+              Commencer en tant que entreprise
             </motion.a>
             <motion.div
               initial={{ opacity: 0 }}

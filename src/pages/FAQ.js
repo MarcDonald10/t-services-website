@@ -152,7 +152,7 @@ const FAQ = () => {
               >
                 Contactez-nous
               </motion.a>
-              <motion.a
+              {/* <motion.a
                 href="/download"
                 className="bg-gradient-to-r from-technician to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-md focus:ring-4 focus:ring-technician focus:ring-offset-2"
                 whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)' }}
@@ -160,7 +160,7 @@ const FAQ = () => {
                 aria-label="Rejoignez TechServices"
               >
                 Rejoignez TechServices
-              </motion.a>
+              </motion.a> */}
             </motion.div>
           </motion.div>
         </div>

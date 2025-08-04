@@ -85,7 +85,7 @@ const TestimonialsSection = ({ testimonials }) => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             viewport={{ once: true }}
-            className="relative h-64 md:h-96 lg:h-[600px]"
+            className="relative h-100 md:h-100 lg:h-[600px]"
           >
             <LazyLoadImage
               src={image02}
@@ -124,7 +124,7 @@ const TestimonialsSection = ({ testimonials }) => {
               variants={itemVariants}
               className="text-base md:text-lg lg:text-xl mb-8 max-w-md mx-auto lg:mx-0"
             >
-              Des clients et artisans satisfaits à travers l’Afrique francophone.
+              Des clients et techniciens satisfaits à travers l’Afrique francophone.
             </motion.p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto lg:mx-0">
               {testimonials.slice(0, 4).map((testimonial, index) => (

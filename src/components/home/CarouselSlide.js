@@ -47,7 +47,7 @@ const Hero = () => {
   const carouselSlides = [
     {
       image: 'https://images.unsplash.com/photo-1611162617210-7d673bf0fCraw?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      title: 'Trouvez un artisan en un clin d’œil',
+      title: 'Trouvez un technicien en un clin d’œil',
       description: 'Recherchez des professionnels qualifiés près de chez vous, disponibles 24/7.',
       ctaText: 'Téléchargez l’app',
       ctaLink: '/download',
@@ -57,7 +57,7 @@ const Hero = () => {
       image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       title: 'Boostez votre activité',
       description: 'Créez un profil pro et accédez à des projets dans votre région.',
-      ctaText: 'Devenir artisan',
+      ctaText: 'Devenir technicien',
       ctaLink: '/technicians',
       ctaColor: 'technician',
     },
@@ -105,7 +105,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-4xl md:text-6xl font-bold mb-4 leading-tight"
         >
-          Votre partenaire BTP en Afrique
+          Votre partenaire en génie civil 
         </motion.h1>
 
         {/* Subheadline */}
@@ -115,7 +115,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg md:text-xl mb-8 max-w-2xl mx-auto"
         >
-          Connectez-vous aux meilleurs artisans pour vos projets ou trouvez des missions adaptées à vos compétences, 24/7.
+          Connectez-vous aux meilleurs techniciens pour vos projets ou trouvez des missions adaptées à vos compétences, 24/7.
         </motion.p>
 
         {/* CTAs */}
@@ -126,22 +126,22 @@ const Hero = () => {
           className="flex justify-center gap-4 flex-col md:flex-row mb-12"
         >
           <motion.a
-            href="/download"
+            href="https://techservice-bxty.vercel.app/"
             className="bg-client hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold transition duration-300 shadow-lg"
             whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)' }}
             whileTap={{ scale: 0.95 }}
             aria-label="Téléchargez l'application"
           >
-            Téléchargez l’app
+             Commencer en tant que entreprise
           </motion.a>
           <motion.a
             href="/technicians"
             className="bg-technician hover:bg-yellow-600 text-white px-8 py-4 rounded-full font-semibold transition duration-300 shadow-lg"
             whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)' }}
             whileTap={{ scale: 0.95 }}
-            aria-label="Devenir artisan"
+            aria-label="Devenir technicien"
           >
-            Devenir artisan
+            Devenir technicien
           </motion.a>
         </motion.div>
 
