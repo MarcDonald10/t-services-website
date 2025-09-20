@@ -162,13 +162,13 @@ const Contact = () => {
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">Notre emplacement</h3>
                   <div className="rounded-lg overflow-hidden shadow-md">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.991625956777!2d2.352221615674019!3d48.85661407928782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee6046d7e!2sParis%2C%20France!5e0!3m2!1sen!2sfr!4v1635781234567!5m2!1sen!2sfr"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31877.29284756507!2d9.6841689!3d4.0637286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10610db27225c5a1%3A0x6f9b3ffb4d55d7a!2sDeido%2C%20Douala%2C%20Cameroun!5e0!3m2!1sfr!2scm!4v1692894953000!5m2!1sfr!2scm"
                       width="100%"
                       height="200"
                       style={{ border: 0 }}
                       allowFullScreen=""
                       loading="lazy"
-                      title="Emplacement de TechServices à Paris"
+                      title="Emplacement de TechServices à Douala"
                       aria-label="Carte interactive de l'emplacement de TechServices"
                     ></iframe>
                   </div>

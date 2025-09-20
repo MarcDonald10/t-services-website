@@ -7,8 +7,10 @@ import Navbar from '../components/common/Navbar';
 import PageHeader from '../components/common/PageHeader';
 import Footer from '../components/common/Footer';
 
+
+
 // Données des services avec images optimisées
-const servicesData = [
+export const servicesData = [
   {
     id: 'clients',
     title: 'Pour les Clients',
@@ -106,21 +108,21 @@ const servicesData = [
       {
         title: 'Réception des Demandes',
         description: 'Accédez aux demandes des clients via l’application web ou mobile.',
-        image: 'https://images.unsplash.com/photo-1504307651254-35680f3567cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        image: '/serviceentreprise/reception.png',
         imageLow: 'https://images.unsplash.com/photo-1504307651254-35680f3567cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
         alt: 'Capture d’écran de la réception des demandes sur l’application TechServices pour entreprises',
       },
       {
         title: 'Planification',
         description: 'Planifiez des rendez-vous avec les clients et assignez des tâches aux équipes.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+        image: '/serviceentreprise/planification.png',
+        imageLow: 'https://t4.ftcdn.net/jpg/03/74/64/35/360_F_374643536_jcEA3M0kGFbPeYikzyTuKIOFCVIz5dOf.jpg',
         alt: 'Capture d’écran de la planification des rendez-vous sur TechServices',
       },
       {
         title: 'Coordination',
         description: 'Collaborez avec techniciens et quincailleries pour une exécution fluide.',
-        image: 'https://images.unsplash.com/photo-1577412561597-a0c7d2c5f3ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        image: '/serviceentreprise/coordination.png',
         imageLow: 'https://images.unsplash.com/photo-1577412561597-a0c7d2c5f3ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
         alt: 'Capture d’écran de la coordination des équipes sur TechServices',
       },

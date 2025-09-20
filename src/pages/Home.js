@@ -58,31 +58,31 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: 'Fatima K.',
-      role: 'Cliente, Abidjan',
+      name: 'Njassap Yves',
+      role: 'Cliente, Douala',
       text: 'Une panne électrique résolue en 2h grâce à l’app ! Service rapide et fiable.',
-      avatar: 'https://images.unsplash.com/photo-1531123414780-f74242c2b15e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
+      avatar: 'https://i.pinimg.com/736x/d5/59/70/d559706c75e71a16149003b270ab6871.jpg',
       rating: 5,
     },
     {
-      name: 'Moussa D.',
-      role: 'Maçon, Dakar',
+      name: 'Moussango Styves',
+      role: 'Maçon, Baffoussam',
       text: 'L’app m’a permis de tripler mes chantiers. Les outils pro sont top !',
-      avatar: 'https://images.unsplash.com/photo-1506794778202-36a267f07f02?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
+      avatar: 'https://i.pinimg.com/736x/d5/5e/a0/d55ea0ee50ac7054aab807e9338c983c.jpg',
       rating: 5,
     },
     {
-      name: 'Aïssatou ty.',
-      role: 'Entreprise, Bamako',
+      name: 'Mbarga Agnes',
+      role: 'Entreprise, Douala',
       text: 'Une plateforme intuitive pour gérer nos projets du génie civil efficacement.',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
+      avatar: 'https://i.pinimg.com/736x/4b/d3/72/4bd372981682df8ccdf699d5e9dbbc05.jpg',
       rating: 6,
     },
     {
-      name: 'Aïssatou op.',
-      role: 'Entreprise, Bamako',
+      name: 'Aïssatou Fatima',
+      role: 'Entreprise, Yaounde',
       text: 'Une plateforme intuitive pour gérer nos projets du génie civil efficacement.',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
+      avatar: 'https://i.pinimg.com/1200x/00/51/e0/0051e0f5fdcaccce4546c1c73d9905df.jpg',
       rating: 7,
     },
     {

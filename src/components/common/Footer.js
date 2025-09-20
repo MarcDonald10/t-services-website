@@ -156,12 +156,12 @@ const Footer = () => {
               </motion.button>
             </form>
             <div className="mt-4 flex justify-center gap-4">
-              <a href="https://play.google.com">
-                <img
-                  src="https://placehold.co/150x50.png?text=Google+Play"
-                  alt="Google Play Store"
-                  className="h-10"
-                />
+              <a href="https://play.google.com/store">
+               <img
+                 src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                 alt="Get it on Google Play"
+                 className="h-12 object-contain"
+               />
               </a>
               <a href="https://www.apple.com/app-store">
                 <img

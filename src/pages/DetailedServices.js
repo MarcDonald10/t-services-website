@@ -1,172 +1,181 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/opacity.css';
-import { BuildingOfficeIcon, CheckCircleIcon, TruckIcon, UserIcon, WrenchScrewdriverIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
-import { useParams, Link } from 'react-router-dom';
-import Navbar from '../components/common/Navbar';
-import PageHeader from '../components/common/PageHeader';
-import Footer from '../components/common/Footer';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/opacity.css";
+import {
+  BuildingOfficeIcon,
+  CheckCircleIcon,
+  TruckIcon,
+  UserIcon,
+  WrenchScrewdriverIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/solid";
+import { useParams, Link } from "react-router-dom";
+import Navbar from "../components/common/Navbar";
+import PageHeader from "../components/common/PageHeader";
+import Footer from "../components/common/Footer";
+import { servicesData } from "./Services";
 
-// Données des services
-const servicesData = [
-  {
-    id: 'clients',
-    title: 'Pour les Clients',
-    description: 'Pilotez vos projets de construction avec une simplicité inégalée.',
-    image: 'https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800',
-    imageLow: 'https://images.unsplash.com/photo-1611162617213-7d15a376f3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-    alt: 'Client utilisant TechServices pour gérer un projet de construction',
-    icon: <UserIcon className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
-    role: 'Maîtrisez vos chantiers de A à Z',
-    detailedDescription: 'Avec TechServices, trouvez des techniciens qualifiés, suivez vos chantiers en temps réel grâce à des mises à jour visuelles, et gérez devis et paiements en toute sécurité via une interface intuitive.',
-    benefits: [
-      { title: 'Demandes Simplifiées', description: 'Envoyez vos besoins à des techniciens ou quincailleries en un clic.' },
-      { title: 'Suivi Visuel', description: 'Recevez des photos et mises à jour en temps réel de vos chantiers.' },
-      { title: 'Paiements Sécurisés', description: 'Validez devis et paiements directement dans l’app.' },
-    ],
-    features: [
-      {
-        title: 'Envoyer des Demandes',
-        description: 'Soumettez vos besoins à des techniciens, entreprises du génie civil, ou quincailleries en quelques clics.',
-        image: 'https://images.unsplash.com/photo-1611162617213-7d15a376f3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1611162617213-7d15a376f3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran de l’interface TechServices pour envoyer une demande de projet',
-      },
-      {
-        title: 'Suivi en Temps Réel',
-        description: 'Suivez l’avancement de vos chantiers via des mises à jour et des photos partagées par les techniciens.',
-        image: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran du suivi en temps réel d’un chantier sur TechServices',
-      },
-      {
-        title: 'Paiements Sécurisés',
-        description: 'Validez les devis et effectuez des paiements sécurisés directement dans l’application.',
-        image: 'https://images.unsplash.com/photo-1666875753105-005a9f93b8f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1666875753105-005a9f93b8f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran du système de paiement sécurisé de TechServices',
-      },
-    ],
-  },
-  {
-    id: 'techniciens',
-    title: 'Pour les Techniciens',
-    description: 'Boostez votre productivité sur les chantiers avec des outils modernes.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    imageLow: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-    alt: 'Technicien utilisant TechServices sur un chantier',
-    icon: <WrenchScrewdriverIcon className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
-    role: 'Simplifiez la gestion de vos chantiers',
-    detailedDescription: 'TechServices vous permet de recevoir des demandes, de naviguer vers les chantiers avec une carte intégrée, et de collaborer avec des quincailleries pour des matériaux livrés à temps.',
-    benefits: [
-      { title: 'Demandes Instantanées', description: 'Recevez et acceptez des projets via l’app mobile.' },
-      { title: 'Navigation Facile', description: 'Trouvez vos chantiers grâce à la carte intégrée.' },
-      { title: 'Devis Rapides', description: 'Créez et envoyez des devis en quelques minutes.' },
-    ],
-    features: [
-      {
-        title: 'Réception des Demandes',
-        description: 'Recevez et acceptez les demandes des clients directement via l’application mobile.',
-        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran de la réception d’une demande sur TechServices',
-      },
-      {
-        title: 'Navigation Intégrée',
-        description: 'Utilisez la carte intégrée pour vous rendre facilement sur les chantiers.',
-        image: 'https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran de la navigation intégrée de TechServices',
-      },
-      {
-        title: 'Gestion des Devis',
-        description: 'Créez et envoyez des devis, et collaborez avec les quincailleries pour les matériaux.',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda0e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1551288049-bebda0e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran de la gestion des devis sur TechServices',
-      },
-    ],
-  },
-  {
-    id: 'entreprises',
-    title: 'Pour les Entreprises du génie civil',
-    description: 'Coordonnez vos projets avec une efficacité sans précédent.',
-    image: 'https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800',
-    imageLow: 'https://images.unsplash.com/photo-1504307651254-35680f3567cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-    alt: 'Chantier géré par une entreprise du génie civil avec TechServices',
-    icon: <BuildingOfficeIcon className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
-    role: 'Orchestrez vos équipes et projets',
-    detailedDescription: 'TechServices permet aux entreprises du génie civil de recevoir des demandes, de planifier des rendez-vous, et de coordonner techniciens et quincailleries pour des projets livrés dans les délais.',
-    benefits: [
-      { title: 'Gestion Centralisée', description: 'Recevez les demandes via l’app web ou mobile.' },
-      { title: 'Planification Optimale', description: 'Assignez tâches et rendez-vous facilement.' },
-      { title: 'Coordination Fluide', description: 'Collaborez avec techniciens et quincailleries.' },
-    ],
-    features: [
-      {
-        title: 'Réception des Demandes',
-        description: 'Accédez aux demandes des clients via l’application web ou mobile.',
-        image: 'https://images.unsplash.com/photo-1504307651254-35680f3567cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1504307651254-35680f3567cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran de la réception des demandes sur TechServices',
-      },
-      {
-        title: 'Planification',
-        description: 'Planifiez des rendez-vous avec les clients et assignez des tâches aux équipes.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran de la planification sur TechServices',
-      },
-      {
-        title: 'Coordination',
-        description: 'Collaborez avec techniciens et quincailleries pour une exécution fluide.',
-        image: 'https://images.unsplash.com/photo-1577412561597-a0c7d2c5f3ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1577412561597-a0c7d2c5f3ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran de la coordination sur TechServices',
-      },
-    ],
-  },
-  {
-    id: 'quincailleries',
-    title: 'Pour les Quincailleries',
-    description: 'Fournissez des matériaux rapidement et efficacement.',
-    image: 'https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800',
-    imageLow: 'https://images.unsplash.com/photo-1586528116311-ad8dd3a7a7f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-    alt: 'Quincaillerie intégrée à TechServices',
-    icon: <TruckIcon className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
-    role: 'Livrez des matériaux là où ça compte',
-    detailedDescription: 'TechServices aide les quincailleries à traiter les commandes, envoyer des factures proforma, et organiser des livraisons rapides vers les chantiers.',
-    benefits: [
-      { title: 'Commandes Simplifiées', description: 'Recevez des bons de commande sans prix.' },
-      { title: 'Facturation Rapide', description: 'Envoyez des factures proforma en un clic.' },
-      { title: 'Livraisons Efficaces', description: 'Livrez directement sur les chantiers.' },
-    ],
-    features: [
-      {
-        title: 'Réception des Commandes',
-        description: 'Recevez des bons de commande sans prix depuis les techniciens ou entreprises.',
-        image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3a7a7f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1586528116311-ad8dd3a7a7f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran de la réception des commandes sur TechServices',
-      },
-      {
-        title: 'Facturation',
-        description: 'Envoyez des factures proforma avec vos prix directement via l’application.',
-        image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran de la facturation sur TechServices',
-      },
-      {
-        title: 'Livraison',
-        description: 'Organisez des livraisons rapides de matériaux vers les chantiers.',
-        image: 'https://images.unsplash.com/photo-1586528116022-aeda1613f7e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        imageLow: 'https://images.unsplash.com/photo-1586528116022-aeda1613f7e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
-        alt: 'Capture d’écran de la gestion des livraisons sur TechServices',
-      },
-    ],
-  },
-];
+// // Données des services
+// const servicesData = [
+//   {
+//     id: 'clients',
+//     title: 'Pour les Clients',
+//     description: 'Pilotez vos projets de construction avec une simplicité inégalée.',
+//     image: 'https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800',
+//     imageLow: 'https://images.unsplash.com/photo-1611162617213-7d15a376f3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//     alt: 'Client utilisant TechServices pour gérer un projet de construction',
+//     icon: <UserIcon className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
+//     role: 'Maîtrisez vos chantiers de A à Z',
+//     detailedDescription: 'Avec TechServices, trouvez des techniciens qualifiés, suivez vos chantiers en temps réel grâce à des mises à jour visuelles, et gérez devis et paiements en toute sécurité via une interface intuitive.',
+//     benefits: [
+//       { title: 'Demandes Simplifiées', description: 'Envoyez vos besoins à des techniciens ou quincailleries en un clic.' },
+//       { title: 'Suivi Visuel', description: 'Recevez des photos et mises à jour en temps réel de vos chantiers.' },
+//       { title: 'Paiements Sécurisés', description: 'Validez devis et paiements directement dans l’app.' },
+//     ],
+//     features: [
+//       {
+//         title: 'Envoyer des Demandes',
+//         description: 'Soumettez vos besoins à des techniciens, entreprises du génie civil, ou quincailleries en quelques clics.',
+//         image: 'https://images.unsplash.com/photo-1611162617213-7d15a376f3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1611162617213-7d15a376f3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran de l’interface TechServices pour envoyer une demande de projet',
+//       },
+//       {
+//         title: 'Suivi en Temps Réel',
+//         description: 'Suivez l’avancement de vos chantiers via des mises à jour et des photos partagées par les techniciens.',
+//         image: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran du suivi en temps réel d’un chantier sur TechServices',
+//       },
+//       {
+//         title: 'Paiements Sécurisés',
+//         description: 'Validez les devis et effectuez des paiements sécurisés directement dans l’application.',
+//         image: 'https://images.unsplash.com/photo-1666875753105-005a9f93b8f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1666875753105-005a9f93b8f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran du système de paiement sécurisé de TechServices',
+//       },
+//     ],
+//   },
+//   {
+//     id: 'techniciens',
+//     title: 'Pour les Techniciens',
+//     description: 'Boostez votre productivité sur les chantiers avec des outils modernes.',
+//     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//     imageLow: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//     alt: 'Technicien utilisant TechServices sur un chantier',
+//     icon: <WrenchScrewdriverIcon className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
+//     role: 'Simplifiez la gestion de vos chantiers',
+//     detailedDescription: 'TechServices vous permet de recevoir des demandes, de naviguer vers les chantiers avec une carte intégrée, et de collaborer avec des quincailleries pour des matériaux livrés à temps.',
+//     benefits: [
+//       { title: 'Demandes Instantanées', description: 'Recevez et acceptez des projets via l’app mobile.' },
+//       { title: 'Navigation Facile', description: 'Trouvez vos chantiers grâce à la carte intégrée.' },
+//       { title: 'Devis Rapides', description: 'Créez et envoyez des devis en quelques minutes.' },
+//     ],
+//     features: [
+//       {
+//         title: 'Réception des Demandes',
+//         description: 'Recevez et acceptez les demandes des clients directement via l’application mobile.',
+//         image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran de la réception d’une demande sur TechServices',
+//       },
+//       {
+//         title: 'Navigation Intégrée',
+//         description: 'Utilisez la carte intégrée pour vous rendre facilement sur les chantiers.',
+//         image: 'https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran de la navigation intégrée de TechServices',
+//       },
+//       {
+//         title: 'Gestion des Devis',
+//         description: 'Créez et envoyez des devis, et collaborez avec les quincailleries pour les matériaux.',
+//         image: 'https://images.unsplash.com/photo-1551288049-bebda0e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1551288049-bebda0e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran de la gestion des devis sur TechServices',
+//       },
+//     ],
+//   },
+//   {
+//     id: 'entreprises',
+//     title: 'Pour les Entreprises du génie civil',
+//     description: 'Coordonnez vos projets avec une efficacité sans précédent.',
+//     image: 'https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800',
+//     imageLow: 'https://images.unsplash.com/photo-1504307651254-35680f3567cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//     alt: 'Chantier géré par une entreprise du génie civil avec TechServices',
+//     icon: <BuildingOfficeIcon className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
+//     role: 'Orchestrez vos équipes et projets',
+//     detailedDescription: 'TechServices permet aux entreprises du génie civil de recevoir des demandes, de planifier des rendez-vous, et de coordonner techniciens et quincailleries pour des projets livrés dans les délais.',
+//     benefits: [
+//       { title: 'Gestion Centralisée', description: 'Recevez les demandes via l’app web ou mobile.' },
+//       { title: 'Planification Optimale', description: 'Assignez tâches et rendez-vous facilement.' },
+//       { title: 'Coordination Fluide', description: 'Collaborez avec techniciens et quincailleries.' },
+//     ],
+//     features: [
+//       {
+//         title: 'Réception des Demandes',
+//         description: 'Accédez aux demandes des clients via l’application web ou mobile.',
+//         image: 'https://images.unsplash.com/photo-1504307651254-35680f3567cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1504307651254-35680f3567cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran de la réception des demandes sur TechServices',
+//       },
+//       {
+//         title: 'Planification',
+//         description: 'Planifiez des rendez-vous avec les clients et assignez des tâches aux équipes.',
+//         image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran de la planification sur TechServices',
+//       },
+//       {
+//         title: 'Coordination',
+//         description: 'Collaborez avec techniciens et quincailleries pour une exécution fluide.',
+//         image: 'https://images.unsplash.com/photo-1577412561597-a0c7d2c5f3ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1577412561597-a0c7d2c5f3ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran de la coordination sur TechServices',
+//       },
+//     ],
+//   },
+//   {
+//     id: 'quincailleries',
+//     title: 'Pour les Quincailleries',
+//     description: 'Fournissez des matériaux rapidement et efficacement.',
+//     image: 'https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800',
+//     imageLow: 'https://images.unsplash.com/photo-1586528116311-ad8dd3a7a7f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//     alt: 'Quincaillerie intégrée à TechServices',
+//     icon: <TruckIcon className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
+//     role: 'Livrez des matériaux là où ça compte',
+//     detailedDescription: 'TechServices aide les quincailleries à traiter les commandes, envoyer des factures proforma, et organiser des livraisons rapides vers les chantiers.',
+//     benefits: [
+//       { title: 'Commandes Simplifiées', description: 'Recevez des bons de commande sans prix.' },
+//       { title: 'Facturation Rapide', description: 'Envoyez des factures proforma en un clic.' },
+//       { title: 'Livraisons Efficaces', description: 'Livrez directement sur les chantiers.' },
+//     ],
+//     features: [
+//       {
+//         title: 'Réception des Commandes',
+//         description: 'Recevez des bons de commande sans prix depuis les techniciens ou entreprises.',
+//         image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3a7a7f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1586528116311-ad8dd3a7a7f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran de la réception des commandes sur TechServices',
+//       },
+//       {
+//         title: 'Facturation',
+//         description: 'Envoyez des factures proforma avec vos prix directement via l’application.',
+//         image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran de la facturation sur TechServices',
+//       },
+//       {
+//         title: 'Livraison',
+//         description: 'Organisez des livraisons rapides de matériaux vers les chantiers.',
+//         image: 'https://images.unsplash.com/photo-1586528116022-aeda1613f7e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+//         imageLow: 'https://images.unsplash.com/photo-1586528116022-aeda1613f7e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60',
+//         alt: 'Capture d’écran de la gestion des livraisons sur TechServices',
+//       },
+//     ],
+//   },
+// ];
 
 // Variants d'animation
 const containerVariants = {
@@ -176,11 +185,15 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
 };
 
 const ctaVariants = {
-  hover: { scale: 1.05, backgroundImage: 'linear-gradient(to right, #FBBF24, #FEF08A)', boxShadow: '0 0 20px rgba(251, 191, 36, 0.5)' },
+  hover: {
+    scale: 1.05,
+    backgroundImage: "linear-gradient(to right, #FBBF24, #FEF08A)",
+    boxShadow: "0 0 20px rgba(251, 191, 36, 0.5)",
+  },
   tap: { scale: 0.95 },
 };
 
@@ -200,7 +213,11 @@ const ServiceDetails = () => {
   };
 
   const handlePrev = () => {
-    setCurrentFeature((prev) => (prev - 1 + (service?.features.length || 1)) % (service?.features.length || 1));
+    setCurrentFeature(
+      (prev) =>
+        (prev - 1 + (service?.features.length || 1)) %
+        (service?.features.length || 1)
+    );
   };
 
   if (!service) {
@@ -209,8 +226,12 @@ const ServiceDetails = () => {
         <Navbar />
         <PageHeader pageName="SERVICE INTROUVABLE" />
         <section className="container mx-auto px-6 py-28 text-center">
-          <h2 className="text-3xl font-bold text-blue-900 mb-4 font-montserrat">Service non trouvé</h2>
-          <p className="text-gray-700 mb-8 font-inter">Désolé, la solution demandée n’existe pas.</p>
+          <h2 className="text-3xl font-bold text-blue-900 mb-4 font-montserrat">
+            Service non trouvé
+          </h2>
+          <p className="text-gray-700 mb-8 font-inter">
+            Désolé, la solution demandée n’existe pas.
+          </p>
           <Link
             to="/services"
             className="inline-block px-10 py-4 bg-yellow-400 text-blue-900 font-semibold rounded-full shadow-lg hover:bg-yellow-300 font-inter"
@@ -229,30 +250,37 @@ const ServiceDetails = () => {
       <head>
         <title>{`${service.title} - TechServices`}</title>
         <meta name="description" content={service.detailedDescription} />
-        <meta name="keywords" content={`TechServices, ${service.title}, du génie civil, construction, chantiers, gestion de projets, techniciens, quincailleries`} />
+        <meta
+          name="keywords"
+          content={`TechServices, ${service.title}, du génie civil, construction, chantiers, gestion de projets, techniciens, quincailleries`}
+        />
         <meta property="og:title" content={`${service.title} - TechServices`} />
         <meta property="og:description" content={service.detailedDescription} />
         <meta property="og:image" content={service.image} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://www.techservices.com/services/${service.id}`} />
+        <meta
+          property="og:url"
+          content={`https://www.techservices.com/services/${service.id}`}
+        />
         <script type="application/ld+json">
           {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
+            "@context": "https://schema.org",
+            "@type": "Service",
             serviceType: `Solution génie civil pour ${service.title}`,
             provider: {
-              '@type': 'Organization',
-              name: 'TechServices',
-              logo: 'https://www.techservices.com/logo.png',
+              "@type": "Organization",
+              name: "TechServices",
+              logo: "https://www.techservices.com/logo.png",
             },
             description: service.detailedDescription,
             image: service.image,
-            areaServed: 'Monde',
+            areaServed: "Monde",
             offers: {
-              '@type': 'Offer',
-              priceCurrency: 'USD',
-              price: '0',
-              description: 'Accès gratuit à TechServices avec fonctionnalités premium disponibles via abonnement.',
+              "@type": "Offer",
+              priceCurrency: "USD",
+              price: "0",
+              description:
+                "Accès gratuit à TechServices avec fonctionnalités premium disponibles via abonnement.",
             },
           })}
         </script>
@@ -268,7 +296,7 @@ const ServiceDetails = () => {
           <motion.div
             className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-transparent"
             animate={{ y: [0, -20, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           />
           <div className="container mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             <div>
@@ -299,7 +327,9 @@ const ServiceDetails = () => {
                 whileTap="tap"
                 aria-label={`Découvrir les fonctionnalités pour ${service.title}`}
               >
-                <span className="relative z-10">Explorer les Fonctionnalités</span>
+                <span className="relative z-10">
+                  Explorer les Fonctionnalités
+                </span>
                 <motion.div
                   className="absolute inset-0 bg-yellow-300 opacity-0"
                   animate={{ opacity: [0, 0.5, 0] }}
@@ -315,6 +345,7 @@ const ServiceDetails = () => {
             >
               <LazyLoadImage
                 src={service.image}
+                // src="https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800"
                 srcSet={`
                   ${service.imageLow} 300w,
                   ${service.image} 1200w
@@ -325,11 +356,15 @@ const ServiceDetails = () => {
                 effect="opacity"
                 placeholderSrc={service.imageLow}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent rounded-2xl" />
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent rounded-2xl" /> */}
               <motion.div
                 className="absolute -inset-2 bg-yellow-400/20 rounded-2xl"
                 animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               />
             </motion.div>
           </div>
@@ -355,14 +390,25 @@ const ServiceDetails = () => {
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
             >
               <div className="flex flex-col justify-center">
-                <motion.div variants={itemVariants} className="flex items-center mb-6">
+                <motion.div
+                  variants={itemVariants}
+                  className="flex items-center mb-6"
+                >
                   {service.icon}
-                  <h3 className="text-2xl font-semibold text-blue-900 ml-3 font-montserrat">{service.role}</h3>
+                  <h3 className="text-2xl font-semibold text-blue-900 ml-3 font-montserrat">
+                    {service.role}
+                  </h3>
                 </motion.div>
-                <motion.p variants={itemVariants} className="text-gray-700 mb-8 font-inter text-lg">
+                <motion.p
+                  variants={itemVariants}
+                  className="text-gray-700 mb-8 font-inter text-lg"
+                >
                   {service.detailedDescription}
                 </motion.p>
-                <motion.ul variants={containerVariants} className="grid grid-cols-1 gap-4">
+                <motion.ul
+                  variants={containerVariants}
+                  className="grid grid-cols-1 gap-4"
+                >
                   {service.benefits.map((benefit, i) => (
                     <motion.li
                       key={i}
@@ -371,8 +417,12 @@ const ServiceDetails = () => {
                     >
                       <CheckCircleIcon className="w-6 h-6 text-yellow-400 mr-3 flex-shrink-0" />
                       <div>
-                        <span className="font-semibold text-blue-900 font-inter">{benefit.title}</span>
-                        <p className="text-gray-700 font-inter">{benefit.description}</p>
+                        <span className="font-semibold text-blue-900 font-inter">
+                          {benefit.title}
+                        </span>
+                        <p className="text-gray-700 font-inter">
+                          {benefit.description}
+                        </p>
                       </div>
                     </motion.li>
                   ))}
@@ -395,7 +445,11 @@ const ServiceDetails = () => {
                 <motion.div
                   className="absolute top-4 right-4 bg-yellow-400 text-blue-900 px-4 py-2 rounded-full font-inter font-semibold"
                   animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 >
                   {service.title}
                 </motion.div>
@@ -487,7 +541,9 @@ const ServiceDetails = () => {
                 <button
                   key={i}
                   onClick={() => setCurrentFeature(i)}
-                  className={`w-3 h-3 rounded-full ${currentFeature === i ? 'bg-yellow-400' : 'bg-gray-400'} hover:bg-yellow-300 transition-colors duration-300`}
+                  className={`w-3 h-3 rounded-full ${
+                    currentFeature === i ? "bg-yellow-400" : "bg-gray-400"
+                  } hover:bg-yellow-300 transition-colors duration-300`}
                   aria-label={`Aller à la fonctionnalité ${i + 1}`}
                 />
               ))}
@@ -519,11 +575,18 @@ const ServiceDetails = () => {
                   key={i}
                   variants={itemVariants}
                   className="group bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-lg hover:bg-yellow-400/20 transition-all duration-300"
-                  whileHover={{ y: -10, boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)' }}
+                  whileHover={{
+                    y: -10,
+                    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+                  }}
                 >
                   <CheckCircleIcon className="w-8 h-8 text-yellow-400 mb-4 group-hover:rotate-12 transition-transform duration-300" />
-                  <h3 className="text-xl font-semibold mb-2 font-montserrat">{benefit.title}</h3>
-                  <p className="text-gray-200 font-inter">{benefit.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 font-montserrat">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-200 font-inter">
+                    {benefit.description}
+                  </p>
                 </motion.div>
               ))}
             </motion.div>
@@ -532,13 +595,15 @@ const ServiceDetails = () => {
 
         {/* CTA Final */}
         <section className="relative bg-gradient-to-br from-yellow-400 to-blue-600 py-28 overflow-hidden">
-          <div className="absolute inset-0 bg-noise bg-[length성화
+          <div
+            className="absolute inset-0 bg-noise bg-[length성화
 
-System: 200px] opacity-10" />
+System: 200px] opacity-10"
+          />
           <motion.div
             className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-yellow-400/20"
             animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
           <div className="container mx-auto px-6 text-center relative z-10">
             <motion.h2
@@ -556,7 +621,9 @@ System: 200px] opacity-10" />
               transition={{ delay: 0.2 }}
               className="text-[clamp(1rem,2vw,1.25rem)] text-gray-100 max-w-2xl mx-auto mb-8 font-inter"
             >
-              Téléchargez TechServices dès maintenant et découvrez une nouvelle façon de gérer vos chantiers, collaborer avec vos équipes, et livrer des projets exceptionnels.
+              Téléchargez TechServices dès maintenant et découvrez une nouvelle
+              façon de gérer vos chantiers, collaborer avec vos équipes, et
+              livrer des projets exceptionnels.
             </motion.p>
             <motion.a
               href="https://techservice-bxty.vercel.app/"
@@ -566,7 +633,9 @@ System: 200px] opacity-10" />
               whileTap="tap"
               aria-label="Télécharger l’application TechServices"
             >
-              <span className="relative z-10">Commencer en tant que entreprise </span>
+              <span className="relative z-10">
+                Commencer en tant que entreprise{" "}
+              </span>
               <motion.div
                 className="absolute inset-0 bg-yellow-400 opacity-0"
                 animate={{ opacity: [0, 0.3, 0] }}

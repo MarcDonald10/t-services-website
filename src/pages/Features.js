@@ -1,531 +1,249 @@
-import { motion, useInView, useReducedMotion } from 'framer-motion';
-import { StarIcon, MagnifyingGlassIcon, CalendarIcon, LockClosedIcon, WrenchScrewdriverIcon, SparklesIcon, CurrencyDollarIcon } from '@heroicons/react/24/solid';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-import { useRef, useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import Navbar from '../components/common/Navbar';
-import Footer from '../components/common/Footer';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, Pagination, Keyboard, EffectFade } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
-import PageHeader from '../components/common/PageHeader';
+import { motion, useInView } from "framer-motion";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { useRef, useState } from "react";
+import Navbar from "../components/common/Navbar";
+import Footer from "../components/common/Footer";
+import '../App.css';
 
-// FeatureCard Component
-const FeatureCard = ({ title, description, color, icon: Icon, image, alt, reverse }) => (
-  <motion.div
-    className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-6 sm:gap-8 p-6 sm:p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-md hover:shadow-xl transition-all duration-300 max-w-5xl mx-auto border border-gray-100 dark:border-gray-700`}
-    whileHover={{ scale: 1.02, boxShadow: '0 12px 24px rgba(0, 0, 0, 0.1)' }}
-  >
-    <div className="flex-1">
-      <div className={`w-12 h-12 mb-4 bg-${color}/10 rounded-full flex items-center justify-center`}>
-        <Icon className={`w-6 h-6 text-${color}`} aria-hidden="true" />
-      </div>
-      <h3
-        className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}
-      >
-        {title}
-      </h3>
-      <p
-        className="text-gray-600 dark:text-gray-300 text-base sm:text-lg"
-        style={{ fontFamily: "'Inter', sans-serif" }}
-      >
-        {description}
-      </p>
-    </div>
-    <div className="flex-1">
-      <LazyLoadImage
-        src={image}
-        srcSet={`${image}&w=400 400w, ${image}&w=800 800w`}
-        sizes="(max-width: 640px) 400px, 800px"
-        alt={alt}
-        className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-sm"
-        effect="blur"
-      />
-    </div>
-  </motion.div>
-);
+// Section Fonctionnalités Interactive
+const FonctionnalitesSection = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-50px" });
 
-// ParticleCanvas Component
-const ParticleCanvas = () => {
-  const shouldReduceMotion = useReducedMotion();
-  const canvasRef = useRef(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // Data des fonctionnalités avec srcSet pour les images de fond
+  const fonctionnalites = [
+    {
+      numero: 1,
+      titre: "Recherche de technicien",
+      texte:
+        "Avec TechServices, trouvez facilement un technicien qualifié près de chez vous. En quelques clics seulement, accédez à des professionnels fiables et disponibles pour répondre à vos besoins.",
+      imagePhone: "/fonctionnalites/screen1.jpg",
+      backgroundImage: {
+        default: "/fonctionnalites/background1.jpg",
+        webp: "/fonctionnalites/background1.webp",
+        srcSet: `/fonctionnalites/background1-sm.webp 640w, /fonctionnalites/background1-md.webp 1024w, /fonctionnalites/background1-lg.webp 1920w`,
+      },
+    },
+    {
+      numero: 2,
+      titre: "Suivi des demandes",
+      texte:
+        "Gardez le contrôle sur vos demandes grâce à un suivi en temps réel. Vous savez toujours où en est votre intervention.",
+      imagePhone: "/fonctionnalites/screen2.jpg",
+      backgroundImage: {
+        default: "/fonctionnalites/background2.jpg",
+        webp: "/fonctionnalites/background2.webp",
+        srcSet: `/fonctionnalites/background2-sm.webp 640w, /fonctionnalites/background2-md.webp 1024w, /fonctionnalites/background2-lg.webp 1920w`,
+      },
+    },
+    {
+      numero: 3,
+      titre: "Gestion du profil",
+      texte:
+        "Personnalisez votre profil et vos préférences pour une expérience sur mesure. Vos informations sont toujours sécurisées.",
+      imagePhone: "/fonctionnalites/screen3.jpg",
+      backgroundImage: {
+        default: "/fonctionnalites/background3.jpg",
+        webp: "/fonctionnalites/background3.webp",
+        srcSet: `/fonctionnalites/background3-sm.webp 640w, /fonctionnalites/background3-md.webp 1024w, /fonctionnalites/background3-lg.webp 1920w`,
+      },
+    },
+    {
+      numero: 4,
+      titre: "Historique et Paiement",
+      texte:
+        "Consultez l'historique de vos interventions et gérez vos paiements en toute simplicité.",
+      imagePhone: "/fonctionnalites/screen4.jpg",
+      backgroundImage: {
+        default: "/fonctionnalites/background4.jpg",
+        webp: "/fonctionnalites/background4.webp",
+        srcSet: `/fonctionnalites/background4-sm.webp 640w, /fonctionnalites/background4-md.webp 1024w, /fonctionnalites/background4-lg.webp 1920w`,
+      },
+    },
+  ];
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
-
-    // Set canvas size
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    // Particle class
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 8 + 4;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
-        this.type = Math.floor(Math.random() * 3); // 0: Wrench, 1: Spark, 2: Star
-      }
-
-      update(mouseX, mouseY) {
-        // Move particles
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        // Repel from mouse
-        const dx = this.x - mouseX;
-        const dy = this.y - mouseY;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < 100) {
-          const angle = Math.atan2(dy, dx);
-          this.x += Math.cos(angle) * 2;
-          this.y += Math.sin(angle) * 2;
-        }
-
-        // Wrap around edges
-        if (this.x < 0) this.x = canvas.width;
-        if (this.x > canvas.width) this.x = 0;
-        if (this.y < 0) this.y = canvas.height;
-        if (this.y > canvas.height) this.y = 0;
-      }
-
-      draw() {
-        ctx.fillStyle = this.type === 0 ? '#1E90FF' : this.type === 1 ? '#F59E0B' : '#FBBF24';
-        ctx.beginPath();
-        if (this.type === 0) {
-          // Wrench shape
-          ctx.moveTo(this.x - this.size, this.y);
-          ctx.lineTo(this.x, this.y - this.size);
-          ctx.lineTo(this.x + this.size, this.y);
-          ctx.lineTo(this.x, this.y + this.size);
-        } else if (this.type === 1) {
-          // Spark shape (cross)
-          ctx.moveTo(this.x - this.size, this.y);
-          ctx.lineTo(this.x + this.size, this.y);
-          ctx.moveTo(this.x, this.y - this.size);
-          ctx.lineTo(this.x, this.y + this.size);
-        } else {
-          // Star shape
-          for (let i = 0; i < 5; i++) {
-            ctx.lineTo(
-              this.x + this.size * Math.cos((i * 4 * Math.PI) / 5),
-              this.y + this.size * Math.sin((i * 4 * Math.PI) / 5)
-            );
-            ctx.lineTo(
-              this.x + (this.size / 2) * Math.cos(((i * 4 + 2) * Math.PI) / 5),
-              this.y + (this.size / 2) * Math.sin(((i * 4 + 2) * Math.PI) / 5)
-            );
-          }
-        }
-        ctx.closePath();
-        ctx.globalAlpha = 0.3;
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      }
-    }
-
-    const particles = Array.from({ length: 20 }, () => new Particle());
-
-    const animate = () => {
-      if (shouldReduceMotion) return; // Skip animation if reduced motion is enabled
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((particle) => {
-        particle.update(mousePosition.x, mousePosition.y);
-        particle.draw();
-      });
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, [mousePosition, shouldReduceMotion]);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  const fonctionnaliteActive = fonctionnalites[activeTab];
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 pointer-events-none"
-      aria-hidden="true"
-    />
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen overflow-hidden bg-gray-200"
+    >
+      {/* Image de fond */}
+      <div className="absolute inset-0">
+        <motion.div
+          key={fonctionnaliteActive.numero}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0"
+        >
+          <picture>
+            <source
+              srcSet={fonctionnaliteActive.backgroundImage.srcSet}
+              type="image/webp"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1920px"
+            />
+            <LazyLoadImage
+              src={fonctionnaliteActive.backgroundImage.default}
+              alt={`Background ${fonctionnaliteActive.titre}`}
+              className="w-full h-full object-cover object-center background1"
+              effect="blur"
+              loading="eager"
+              placeholderSrc="/placeholder.jpg"
+            />
+          </picture>
+          <div className="absolute inset-0 bg-black/30"></div>
+        </motion.div>
+      </div>
+
+      {/* Contenu principal */}
+      <div className="relative z-10 min-h-screen flex items-center py-6 sm:py-8 lg:py-12 xl:py-16">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 w-full">
+          {/* Carte glassmorphism améliorée */}
+          <div className="relative bg-white/8 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 p-4 sm:p-6 lg:p-8 xl:p-10 overflow-hidden">
+            {/* Couche glassmorphism principale */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/5 to-transparent rounded-2xl sm:rounded-3xl"></div>
+            
+            {/* Effet de brillance en haut */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+            
+            {/* Effet lumineux subtil sur les bords */}
+            <div className="absolute inset-0 rounded-2xl sm:rounded-3xl ring-1 ring-inset ring-white/20"></div>
+            
+            {/* Particules flottantes (cachées sur très petit écran) */}
+            <div className="hidden sm:block absolute top-4 right-8 w-2 h-2 bg-white/20 rounded-full animate-pulse"></div>
+            <div className="hidden sm:block absolute top-8 sm:top-12 right-12 sm:right-16 w-1 h-1 bg-blue-200/30 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+            <div className="hidden sm:block absolute bottom-6 sm:bottom-8 left-8 sm:left-12 w-1.5 h-1.5 bg-white/15 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
+            
+            {/* Contenu principal */}
+            <div className="relative z-10">
+              {/* Grille principale */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-center">
+                {/* GAUCHE - Numéros (caché sur mobile et tablet) */}
+                <div className="hidden xl:flex flex-col space-y-4 lg:space-y-6 items-center">
+                  <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+                    transition={{ duration: 0.8 }}
+                    className="flex flex-col gap-3 sm:gap-4 lg:gap-6 items-center"
+                  >
+                    {fonctionnalites.map((fonc, index) => (
+                      <motion.button
+                        key={fonc.numero}
+                        onClick={() => setActiveTab(index)}
+                        aria-label={`Ouvrir la fonctionnalité ${fonc.titre}`}
+                        aria-current={activeTab === index ? "true" : "false"}
+                        className={`w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center text-sm sm:text-base lg:text-lg xl:text-xl font-bold transition-all duration-300 backdrop-blur-sm ${
+                          activeTab === index
+                            ? "bg-blue-600 text-white shadow-2xl scale-110 ring-2 ring-blue-300"
+                            : "bg-white/90 text-blue-600 hover:bg-white hover:scale-105 shadow-lg"
+                        }`}
+                        whileHover={{ scale: activeTab === index ? 1.15 : 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {fonc.numero}
+                      </motion.button>
+                    ))}
+                  </motion.div>
+                </div>
+
+                {/* DROITE - Texte & Téléphone */}
+                <div className="lg:col-span-2 xl:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 items-center">
+                  {/* Téléphone (premier sur mobile) */}
+                  <div className="order-1 md:order-2 flex justify-center">
+                    <motion.div
+                      key={fonctionnaliteActive.numero}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+                      className="relative w-full max-w-[180px] sm:max-w-[200px] md:max-w-[220px] lg:max-w-[260px] xl:max-w-[300px]"
+                    >
+                      <div className="relative bg-black rounded-[1.5rem] sm:rounded-[2rem] p-1.5 sm:p-2 lg:p-3 shadow-2xl">
+                        <div className="absolute top-2 sm:top-3 lg:top-4 left-1/2 transform -translate-x-1/2 w-16 sm:w-20 lg:w-24 h-4 sm:h-5 lg:h-6 bg-black rounded-full z-20"></div>
+                        <div className="relative bg-black rounded-[1.2rem] sm:rounded-[1.5rem] overflow-hidden mt-4 sm:mt-6 lg:mt-8">
+                          <div className="w-full aspect-[9/19.5] bg-white relative">
+                            <LazyLoadImage
+                              src={fonctionnaliteActive.imagePhone}
+                              alt={`${fonctionnaliteActive.titre} - Interface TechServices`}
+                              className="w-full h-full object-cover object-top"
+                              effect="blur"
+                              wrapperClassName="w-full h-full"
+                              placeholderSrc="/placeholder-phone.jpg"
+                              sizes="(max-width: 640px) 60vw, (max-width: 1024px) 40vw, (max-width: 1280px) 30vw, 400px"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="absolute bg-blue-400/20 rounded-[2rem] sm:rounded-[2.5rem] blur-xl -z-10 opacity-60 -inset-3 sm:-inset-4 lg:-inset-6"></div>
+                    </motion.div>
+                  </div>
+
+                  {/* Texte (deuxième sur mobile) */}
+                  <div className="order-2 md:order-1 text-center md:text-left">
+                    <motion.div
+                      key={fonctionnaliteActive.numero}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6 }}
+                      className="text-white"
+                    >
+                      <h2 className="font-bold mb-3 sm:mb-4 lg:mb-6 leading-tight text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl drop-shadow-lg">
+                        {fonctionnaliteActive.titre}
+                      </h2>
+                      <div className="mb-4 sm:mb-5 lg:mb-6">
+                        <p className="leading-relaxed text-white text-sm sm:text-base md:text-lg lg:text-xl drop-shadow-sm">
+                          {fonctionnaliteActive.texte}
+                        </p>
+                      </div>
+                      <motion.button
+                        className="bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all shadow-xl hover:shadow-2xl flex items-center gap-2 px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5 lg:py-3 text-xs sm:text-sm lg:text-base mx-auto md:mx-0"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        En savoir plus
+                      </motion.button>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Indicateurs en bas pour mobile et tablet */}
+      <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-1/2 transform -translate-x-1/2 xl:hidden z-20">
+        <div className="flex items-center gap-1.5 sm:gap-2 bg-black/60 backdrop-blur-md rounded-full px-3 sm:px-4 py-1.5 sm:py-2 shadow-xl">
+          {fonctionnalites.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveTab(index)}
+              className={`rounded-full transition-all duration-300 ${
+                activeTab === index 
+                  ? "bg-blue-600 w-4 sm:w-6 h-1.5 sm:h-2" 
+                  : "bg-white/60 hover:bg-white/80 w-1.5 sm:w-2 h-1.5 sm:h-2"
+              }`}
+              aria-label={`Aller à la fonctionnalité ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
-// Features Component
-const Features = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-
-  const features = [
-    {
-      title: 'Recherche facile',
-      description: 'Trouvez des techniciens qualifiés près de chez vous en quelques secondes.',
-      color: 'client',
-      icon: MagnifyingGlassIcon,
-      image: 'https://images.pexels.com/photos/6963080/pexels-photo-6963080.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Application mobile affichant une recherche de techniciens qualifiés',
-      reverse: false,
-    },
-    {
-      title: 'Rendez-vous en ligne',
-      description: 'Planifiez vos interventions rapidement depuis votre smartphone.',
-      color: 'client',
-      icon: CalendarIcon,
-      image: 'https://images.pexels.com/photos/6843576/pexels-photo-6843576.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Application mobile pour planifier des rendez-vous avec un calendrier',
-      reverse: true,
-    },
-    {
-      title: 'Paiement sécurisé',
-      description: 'Payez en toute confiance avec notre système de transactions sécurisées.',
-      color: 'client',
-      icon: LockClosedIcon,
-      image: 'https://images.pexels.com/photos/5090876/pexels-photo-5090876.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Interface de paiement sécurisée avec un cadenas',
-      reverse: false,
-    },
-    {
-      title: 'Missions flexibles',
-      description: 'Choisissez les projets qui correspondent à vos compétences et horaires.',
-      color: 'technician',
-      icon: WrenchScrewdriverIcon,
-      image: 'https://images.pexels.com/photos/162553/construction-worker-tools-helmet-162553.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Technicien sélectionnant des projets sur un chantier',
-      reverse: true,
-    },
-    {
-      title: 'Visibilité accrue',
-      description: 'Attirez plus de clients grâce à un profil professionnel optimisé.',
-      color: 'technician',
-      icon: SparklesIcon,
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Profil professionnel numérique pour attirer des clients',
-      reverse: false,
-    },
-    {
-      title: 'Paiements rapides',
-      description: 'Recevez vos paiements rapidement après chaque mission complétée.',
-      color: 'technician',
-      icon: CurrencyDollarIcon,
-      image: 'https://images.pexels.com/photos/4968630/pexels-photo-4968630.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Notification de paiement rapide sur une application mobile',
-      reverse: true,
-    },
-  ];
-
-
-  const carouselSlides = [
-    {
-      title: 'Recherchez en un clin d’œil',
-      description: 'Trouvez le technicien idéal pour votre projet en quelques clics.',
-      image: 'https://images.pexels.com/photos/6963080/pexels-photo-6963080.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Application mobile pour rechercher des techniciens',
-      ctaText: 'Téléchargez l’app',
-      ctaLink: '/download',
-      ctaColor: 'client',
-    },
-    {
-      title: 'Boostez votre visibilité',
-      description: 'Créez un profil attractif et recevez plus de missions.',
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Profil professionnel numérique pour techniciens',
-      ctaText: 'Devenir technicien',
-      ctaLink: '/technicians',
-      ctaColor: 'technician',
-    },
-    {
-      title: 'Projets sans stress',
-      description: 'Confirmez vos missions et gérez vos paiements facilement.',
-      image: 'https://images.pexels.com/photos/5090876/pexels-photo-5090876.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Interface mobile pour gérer projets et paiements',
-      ctaText: 'Commencez maintenant',
-      ctaLink: '/download',
-      ctaColor: 'client',
-    },
-  ];
-
-  // Animation Variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-  };
-
-  const badgeVariants = {
-    hover: { scale: 1.05, transition: { duration: 0.3 } },
-  };
-
-  const ctaVariants = {
-    hover: {
-      scale: 1.05,
-      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
-      backgroundImage: 'linear-gradient(to right, #1E90FF, #2563EB)', // Dynamic gradient for client
-    },
-    tap: { scale: 0.95 },
-  };
-
-  const technicianCtaVariants = {
-    hover: {
-      scale: 1.05,
-      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
-      backgroundImage: 'linear-gradient(to right, #F59E0B, #D97706)', // Dynamic gradient for technician
-    },
-    tap: { scale: 0.95 },
-  };
-
+// Page complète
+const TechServicesFonctionnalites = () => {
   return (
-    <div >
-      <Helmet>
-        <title>Fonctionnalités - Connectez-vous avec des techniciens qualifiés</title>
-        <meta
-          name="description"
-          content="Découvrez nos outils puissants pour trouver des techniciens qualifiés, planifier des projets, et gérer vos paiements en toute simplicité."
-        />
-        <meta property="og:title" content="Fonctionnalités de notre plateforme" />
-        <meta
-          property="og:description"
-          content="Recherchez, planifiez, et payez des techniciens qualifiés facilement avec notre application."
-        />
-        <meta property="og:image" content={carouselSlides[0].image} />
-        <link rel="preload" href={carouselSlides[0].image} as="image" />
-        <style>{`
-          html {
-            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231E90FF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15.02v1.98a2 2 0 0 1-2 2h-1.98a2 2 0 0 1-1.414-.586l-3-3a2 2 0 0 1 0-2.828l3-3A2 2 0 0 1 16.586 9H18.5a2 2 0 0 1 2 2v1.02a2 2 0 0 1-.586 1.414l-3 3a2 2 0 0 0-.586 1.414V18h-2a2 2 0 0 1-2-2v-1.98a2 2 0 0 1 .586-1.414l3-3a2 2 0 0 1 1.414-.586H18a2 2 0 0 1 2 2v1.02z'/%3E%3C/svg%3E"), auto;
-          }
-          .dark html {
-            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23FBBF24' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15.02v1.98a2 2 0 0 1-2 2h-1.98a2 2 0 0 1-1.414-.586l-3-3a2 2 0 0 1 0-2.828l3-3A2 2 0 0 1 16.586 9H18.5a2 2 0 0 1 2 2v1.02a2 2 0 0 1-.586 1.414l-3 3a2 2 0 0 0-.586 1.414V18h-2a2 2 0 0 1-2-2v-1.98a2 2 0 0 1 .586-1.414l3-3a2 2 0 0 1 1.414-.586H18a2 2 0 0 1 2 2v1.02z'/%3E%3C/svg%3E"), auto;
-          }
-        `}</style>
-      </Helmet>
-     
+    <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <PageHeader pageName="FONCTIONNALITES" />
-      <section
-        ref={sectionRef}
-        className="relative w-full pt-16 sm:pt-20 pb-16 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden"
-        aria-label="Section des fonctionnalités"
-      >
-        <ParticleCanvas />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          {/* Title and Badge */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
-            className="text-center mb-16"
-          >
-            <motion.div
-              variants={badgeVariants}
-              whileHover="hover"
-              className="inline-flex items-center bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full px-4 py-2 mb-6 shadow-md border border-teal-500/20"
-            >
-              <StarIcon className="w-5 h-5 text-yellow-400 mr-2" />
-              <span
-                className="text-sm font-semibold text-gray-900 dark:text-white"
-                style={{ fontFamily: "'Inter', sans-serif" }}
-              >
-                Noté 4.8/5 par 10K+ utilisateurs
-              </span>
-            </motion.div>
-            <motion.h1
-              variants={itemVariants}
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4"
-              style={{ fontFamily: "'Montserrat', sans-serif", fontSize: 'clamp(2rem, 5vw, 3rem)' }}
-            >
-              Des outils puissants pour vos projets du génie civil
-            </motion.h1>
-            <motion.p
-              variants={itemVariants}
-              className="text-basesm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto"
-              style={{ fontFamily: "'Inter', sans-serif" }}
-            >
-              Connectez-vous avec des techniciens qualifiés, planifiez facilement, et gérez vos projets en toute simplicité.
-            </motion.p>
-          </motion.div>
-
-          {/* Feature List */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
-            className="space-y-12 mb-16"
-          >
-            {features.map((feature) => (
-              <FeatureCard key={feature.title} {...feature} />
-            ))}
-          </motion.div>
-
-          {/* Swiper Carousel */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
-            className="max-w-6xl mx-auto mb-16"
-          >
-            <Swiper
-              id="swiper-features"
-              modules={[Autoplay, Navigation, Pagination, Keyboard, EffectFade]}
-              spaceBetween={16}
-              slidesPerView={1}
-              effect="fade"
-              autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-              navigation={{
-                prevEl: '.swiper-button-prev',
-                nextEl: '.swiper-button-next',
-              }}
-              pagination={{ clickable: true }}
-              keyboard={{ enabled: true }}
-              breakpoints={{
-                0: { slidesPerView: 1, spaceBetween: 16, effect: 'fade' },
-                640: { slidesPerView: 2, spaceBetween: 20, effect: 'slide' },
-                1024: { slidesPerView: 3, spaceBetween: 24, effect: 'slide' },
-              }}
-              className="rounded-lg overflow-hidden"
-              aria-label="Carrousel des fonctionnalités"
-            >
-              {carouselSlides.map((slide) => (
-                <SwiperSlide key={slide.title}>
-                  <motion.div
-                    className="relative bg-white dark:bg-gray-800 text-gray-900 dark:text-white p-6 rounded-lg shadow-lg transform hover:-rotate-1 transition-transform duration-300"
-                    whileHover={{ y: -10 }}
-                  >
-                    <LazyLoadImage
-                      src={slide.image}
-                      srcSet={`${slide.image}&w=400 400w, ${slide.image}&w=800 800w`}
-                      sizes="(max-width: 640px) 400px, 800px"
-                      alt={slide.alt}
-                      className="w-full h-48 object-cover rounded-md mb-4"
-                      effect="blur"
-                    />
-                    <h3
-                      className="text-xl font-semibold mb-2"
-                      style={{ fontFamily: "'Montserrat', sans-serif" }}
-                    >
-                      {slide.title}
-                    </h3>
-                    <p
-                      className="text-gray-600 dark:text-gray-300 mb-4"
-                      style={{ fontFamily: "'Inter', sans-serif" }}
-                    >
-                      {slide.description}
-                    </p>
-                    <motion.a
-                      href={slide.ctaLink}
-                      variants={slide.ctaColor === 'client' ? ctaVariants : technicianCtaVariants}
-                      whileHover="hover"
-                      whileTap="tap"
-                      className={`inline-block px-6 py-2 rounded-lg font-semibold text-white transition-all duration-300 shadow-md bg-gradient-to-r ${
-                        slide.ctaColor === 'client'
-                          ? 'from-client to-blue-600'
-                          : 'from-technician to-yellow-600'
-                      }`}
-                      aria-label={slide.ctaText}
-                    >
-                      {slide.ctaText}
-                    </motion.a>
-                  </motion.div>
-                </SwiperSlide>
-              ))}
-              <div
-                className="swiper-button-prev !text-client !w-10 !h-10 after:!text-lg"
-                aria-label="Slide précédent"
-                aria-controls="swiper-features"
-              />
-              <div
-                className="swiper-button-next !text-client !w-10 !h-10 after:!text-lg"
-                aria-label="Slide suivant"
-                aria-controls="swiper-features"
-              />
-            </Swiper>
-          </motion.div>
-
-          {/* CTA Buttons */}
-          {/* <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
-            className="text-center"
-          >
-            <div className="flex justify-center gap-4 flex-wrap">
-              <motion.a
-                href="/download"
-                variants={ctaVariants}
-                whileHover="hover"
-                whileTap="tap"
-                className="bg-gradient-to-r from-client to-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md focus:ring-2 focus:ring-client focus:ring-offset-2"
-                aria-label="Télécharger l'application"
-              >
-                Téléchargez l’app
-              </motion.a>
-              <motion.a
-                href="/technicians"
-                variants={technicianCtaVariants}
-                whileHover="hover"
-                whileTap="tap"
-                className="bg-gradient-to-r from-technician to-yellow-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md focus:ring-2 focus:ring-technician focus:ring-offset-2"
-                aria-label="Devenir technicien"
-              >
-                Devenir technicien
-              </motion.a>
-            </div>
-          </motion.div> */}
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
-        >
-          <svg className="w-6 h-6 text-client" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </motion.div>
-
-        {/* Decorative SVG */}
-        <svg
-          className="absolute bottom-0 left-0 w-full h-16 md:h-24 text-gray-100 dark:text-gray-800"
-          viewBox="0 0 1440 100"
-          fill="currentColor"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path d="M0,100 C360,20 1080,20 1440,100 L1440,100 L0,100 Z" />
-        </svg>
-      </section>
+      <FonctionnalitesSection />
       <Footer />
     </div>
   );
 };
 
-export default Features;
+export default TechServicesFonctionnalites;
